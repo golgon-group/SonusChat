@@ -65,8 +65,8 @@
                          <div class="form-group row">
                             <label for="admin" class="col-md-4 col-form-label text-md-right">{{ __('Number Admin') }}</label>
 
-                            <div class="col-md-6">
-                                <h4><select name="admin">
+                            <div class="col-md-6" >
+                                <h4/><select name="admin">
                                 <option style="font-size:18px;">Kategori</option>
                                 <option value="11" style="font-size:20px;">City Radio</option>
                                 <option value="12" style="font-size:20px;">Medan Fm</option>
