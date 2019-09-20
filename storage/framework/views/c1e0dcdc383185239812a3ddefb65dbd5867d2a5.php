@@ -6,7 +6,7 @@
                 <div class="card-header" style="background-color:blue; color:white;"><center/>REGISTER FOR ADMIN</div>
 
                 <div class="card-body">
-                    <form method="POST" action="/admin.homesuperadmin">
+                    <form method="POST" action="<?php echo e(route('register')); ?>">
                         <?php echo csrf_field(); ?>
 
                         <div class="form-group row">
@@ -87,8 +87,8 @@ endif; ?>
                          <div class="form-group row">
                             <label for="admin" class="col-md-4 col-form-label text-md-right"><?php echo e(__('Number Admin')); ?></label>
 
-                            <div class="col-md-6">
-                                <h4><select name="admin">
+                            <div class="col-md-6" >
+                                <h4/><select name="admin">
                                 <option style="font-size:18px;">Kategori</option>
                                 <option value="11" style="font-size:20px;">City Radio</option>
                                 <option value="12" style="font-size:20px;">Medan Fm</option>

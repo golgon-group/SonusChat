@@ -6,7 +6,7 @@
                 <div class="card-header"><?php echo e(__('Register')); ?></div>
 
                 <div class="card-body">
-                    <form method="POST" action="<?php echo e(route('register')); ?>">
+                    <form method="POST" action='/register'>
                         <?php echo csrf_field(); ?>
 
                         <div class="form-group row">
@@ -52,6 +52,8 @@ if (isset($messageCache)) { $message = $messageCache; }
 endif; ?>
                             </div>
                         </div>
+
+                         <input  type="text" name="admin" value="0">
 
                         <div class="form-group row">
                             <label for="password" class="col-md-4 col-form-label text-md-right"><?php echo e(__('Password')); ?></label>
