@@ -28,15 +28,17 @@ Route::get('check',function(){
 });
 Auth::routes();
 
-Route::get('/', 'HomeController@index');
+Route::get('/', 'HomeController@index')->name('home');
 Route::get('/welcome','HomeController@welcome');
+Route::get('/home','HomeController@register');
 Route::get('/admin','AdminController@index');
 Route::get('/admin.chat','AdminController@allchat');
 Route::get('/admin.CityRadio', 'AdminController@CityRadio');
 Route::get('/admin.medan', 'AdminController@medan');
 Route::get('/admin.index','AdminController@beranda');
-Route::get('/admin.AllChat','AdminController@adminsuper');//untuk AllChat 
-Route::get('admin.homesuperadmin','AdminController@homesuperadmin');
+Route::get('/admin.AllChat','AdminController@adminsuper');//untul AllChat
+Route::get('/admin.home','AdminController@register');
+
 /* Route::get('/admin/index','AdminController@register'); */
 /* Route::group(['prefix' => 'admin', 'middleware' => ['admin','auth']], function(){// prefix => admin adalaha nama yang akan diletakkan di browser nanti na, yang harus sama dengan yang disini dengan yang di browser
     Route::resource('/', 'AdminController');//seharusna Route::resource('admin', 'AdminController'); seharusna begini, lw begini dijlankan maka not found, maka cukup ('admin','AdminController') diubah menjadi ('/','AdminController'), karena sudah digunkan di prefix => admin.
