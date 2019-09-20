@@ -41,10 +41,12 @@ class AdminController extends Controller
         return view('admin.AllChat');
     }
 
-    public function homesuperadmin()
+    public function register()
     {
-        return view('admin.homesuperadmin');
+        return view('admin.home');
     }
+
+    
 
 
     /**
