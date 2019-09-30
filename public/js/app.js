@@ -83284,6 +83284,7 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
     message: '',
     message1: '',
     message2: '',
+    users: [],
     chat: {
       message: [],
       message1: [],
@@ -83302,6 +83303,17 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
         name: this.message
       });
     },
+    created: function created() {
+      var _this = this;
+
+      Echo.join('liveuser').here(function (users) {
+        _this.users = users;
+      }).joining(function (user) {
+        _this.users = user;
+      }).leaving(function (user) {
+        console.log(user.name);
+      });
+    },
     //unutk City Radio
     message1: function message1() {
       Echo["private"]('chat').whisper('typing', {
@@ -83311,7 +83323,7 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
   },
   methods: {
     send: function send() {
-      var _this = this;
+      var _this2 = this;
 
       if (this.message.length != 0) {
         this.chat.message.push(this.message); //message na
@@ -83327,7 +83339,7 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
           chat: this.chat
         }).then(function (response) {
           console.log(response);
-          _this.message = '';
+          _this2.message = '';
         })["catch"](function (error) {
           console.log(error);
         });
@@ -83335,7 +83347,7 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
     },
     //unutk mengirim ke city radio
     sendcity: function sendcity() {
-      var _this2 = this;
+      var _this3 = this;
 
       if (this.message1.length != 0) {
         this.chat.message1.push(this.message1);
@@ -83346,7 +83358,7 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
           chat: this.chat
         }).then(function (response) {
           console.log(response);
-          _this2.message1 = '';
+          _this3.message1 = '';
         })["catch"](function (error) {
           console.log(error);
         });
@@ -83354,7 +83366,7 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
     },
     //untuk mengirmkan ke sendmedan
     sendmedan: function sendmedan() {
-      var _this3 = this;
+      var _this4 = this;
 
       if (this.message2.length != 0) {
         this.chat.message2.push(this.message2);
@@ -83365,7 +83377,7 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
           chat: this.chat
         }).then(function (response) {
           console.log(response);
-          _this3.message2 = '';
+          _this4.message2 = '';
         })["catch"](function (error) {
           console.log(error);
         });
@@ -83377,14 +83389,14 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
       return time.getHours() + ':' + time.getMinutes();
     },
     getOldMessages: function getOldMessages() {
-      var _this4 = this;
+      var _this5 = this;
 
       //unutk membuat agar bisa session dan di tahan teks na atw chat na
       axios.post('/getOldMessage').then(function (response) {
         console.log(response);
 
         if (response.data != '') {
-          _this4.chat = response.data;
+          _this5.chat = response.data;
         }
       })["catch"](function (error) {
         console.log(error);
@@ -83393,45 +83405,45 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
   },
   // listener for event and connect to pusher
   mounted: function mounted() {
-    var _this5 = this;
+    var _this6 = this;
 
     this.getOldMessages();
     Echo["private"]('chat').listen('ChatEvent', function (e) {
-      _this5.chat.message.push(e.message);
+      _this6.chat.message.push(e.message);
 
-      _this5.chat.user.push(e.user); //untuk membuat realtime na user 
-
-
-      _this5.chat.color.push('danger'); //untuk warna chat na
+      _this6.chat.user.push(e.user); //untuk membuat realtime na user 
 
 
-      _this5.chat.time.push(_this5.getTime());
+      _this6.chat.color.push('danger'); //untuk warna chat na
+
+
+      _this6.chat.time.push(_this6.getTime());
 
       axios.post('/stillsave', {
-        chat: _this5.chat
+        chat: _this6.chat
       }).then(function (response) {})["catch"](function (error) {
         console.log(error);
       }); // console.log(e);
     });
     Echo["private"]('chat').listen('CityRadioEvent', function (e) {
-      _this5.chat.message1.push(e.message1);
+      _this6.chat.message1.push(e.message1);
 
-      _this5.chat.user.push(e.user);
+      _this6.chat.user.push(e.user);
 
-      _this5.chat.time.push(_this5.getTime());
+      _this6.chat.time.push(_this6.getTime());
     });
     Echo["private"]('chat').listen('MedanFmEvent', function (e) {
-      _this5.chat.message2.push(e.message2);
+      _this6.chat.message2.push(e.message2);
 
-      _this5.chat.user.push(e.user);
+      _this6.chat.user.push(e.user);
 
-      _this5.chat.time.push(_this5.getTime());
+      _this6.chat.time.push(_this6.getTime());
     }).listenForWhisper('typing', function (e) {
       //untuk membuat ada baccan typing ketka ketik chat
       if (e.name != '') {
-        _this5.typing = 'Sedang Mengetik...'; //text untuk jika diketik keluat di layout
+        _this6.typing = 'Sedang Mengetik...'; //text untuk jika diketik keluat di layout
       } else {
-        _this5.typing = '';
+        _this6.typing = '';
       }
     });
   }
