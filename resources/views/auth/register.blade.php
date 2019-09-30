@@ -39,7 +39,7 @@
                             </div>
                         </div>
 
-                         <input  type="text" name="admin" value="0">
+                         <input  type="hidden" name="admin" value="0">
 
                         <div class="form-group row">
                             <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>

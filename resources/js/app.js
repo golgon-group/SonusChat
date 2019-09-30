@@ -32,7 +32,7 @@ Vue.component('medan',require('./components/medan.vue').default);
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
- */
+ */ 
 
 const app = new Vue({
     el: '#app',
@@ -40,6 +40,7 @@ const app = new Vue({
        message:'',
        message1:'',
        message2:'',
+       users:[],
        chat:{ 
            message:[],
            message1:[],
@@ -57,6 +58,20 @@ const app = new Vue({
                 name:this.message
             })
         },
+
+        created(){
+            Echo.join('liveuser')
+            .here ((users)=>{
+                this.users = users
+            })
+            .joining((user)=>{
+                this.users = user
+            })
+            .leaving((user)=>{
+                console.log(user.name);
+            });
+        },
+
         //unutk City Radio
         message1(){
             Echo.private('chat')

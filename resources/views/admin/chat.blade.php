@@ -11,9 +11,9 @@
   <message v-for="value,index in chat.message" :key= value.index   :user = chat.user[index] :color = chat.color[index] :time = chat.time[index]>@{{value}}</message>
 </ul>
   <input type="text" class="form-control" placeholder="input text here...." v-model="message" @keyup.enter="send">
-    <div class="allchat">
+   {{--  <div class="allchat">
       Delete All Chat
-    </div>
+    </div> untuk menghapus(teteapi saaat ini belum digunakan ) --}}
   </div>
 @endsection
 <style>

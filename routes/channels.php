@@ -18,3 +18,7 @@ Broadcast::channel('App.User.{id}', function ($user, $id) {
 Broadcast::channel('chat', function(){//chat yang di dalam kurung harus sama dengan nama private channel di event\Send.php
         return true;
 });
+
+Broadcast::channel('liveuser',function($user){
+    return $user;
+});

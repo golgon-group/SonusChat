@@ -10,7 +10,7 @@
 ?>
 
 <div class="color" style="color: <?php echo $color; ?>;">
-    <h2>Your log in: {{Auth::user()->name}}</h2>
+    <h2>I am: {{Auth::user()->name}}</h2>
 </div> 
 </div>
 @endsection
