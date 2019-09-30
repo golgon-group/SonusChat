@@ -8,7 +8,7 @@
 ?>
 
 <div class="color" style="color: <?php echo $color; ?>;">
-    <h2>Your log in: <?php echo e(Auth::user()->name); ?></h2>
+    <h2>I am: <?php echo e(Auth::user()->name); ?></h2>
 </div> 
 </div>
 <?php $__env->stopSection(); ?>

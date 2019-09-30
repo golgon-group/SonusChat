@@ -10,31 +10,42 @@
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
      <style>
 .kiri{
-    background-color:red;
-    width:400px;
-    height:auto;
+    background-color:lightgrey;
+    width:410px;
+    height:590px;
+    border-radius:10px 0px 0px 10px;
 }
 h1{
     text-align:center;
 }
 
 .kanan{
-    background-color:yellow;
-    width:500px;
+    border:1px solid black;
+    width:700px;
+    border-radius:0px 6px 10px 0px;
 }
 
 .container{
     width:900px;
     margin-left:200px;
 }
+
+
      </style>
     </head>
     <body>
-       <div class="container">
+       <div class="container" style="margin-top:10px;">
             <div class="kiri" style="float:left;">
-                <h1/>AllChatRoom
-                <h1/>CityRadio
-                <h1/>Medan Fm
+            <h1/>Super Admin
+            </br>
+            </br>
+                <a href="#"><h1/>AllChatRoom</a>
+                </br>
+                </br>
+                <a href="#"><h1/>CityRadio</a>
+                </br>
+                </br>
+               <a href="#"><h1/>Medan Fm</a>
             </div>
             <div class="kanan" style="float:right;">
             <?php echo $__env->make('chat', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
