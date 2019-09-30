@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Auth;
+use App\User;
 
 class AdminController extends Controller
 {
@@ -23,18 +25,20 @@ class AdminController extends Controller
 
     public function CityRadio()
     {
-        return view('admin.CityRadio');
+        $users = User::all()->except(Auth::id());
+        return view('admin.CityRadio',compact('users'));
     }
 
     public function medan()
     {
-        return view('admin.medan');
+        $users = User::all()->except(Auth::id());//iki arek tampilke user tapi ora karo arek login. iku la ndelok conto ne except(Auth::id)
+        return view('admin.medan',compact('users'));
     }
 
-   /*  public function beranda()
+    public function beranda()
     {
         return view('admin.index');
-    } */
+    }
 
     public function adminsuper()
     {
@@ -76,9 +80,10 @@ class AdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(User $users)
     {
-        //
+      
+        return view('admin.UserCity',compact('users'));
     }
 
     /**

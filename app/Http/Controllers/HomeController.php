@@ -9,7 +9,7 @@ use Auth;
 class HomeController extends Controller
 {
     /**
-     * Create a new controller instance.
+     * Create a new controller instance. 
      *
      * @return void
      */
@@ -41,4 +41,10 @@ class HomeController extends Controller
     {
         return view('welcome');
     }
+
+   /*  public function tampilan_user()
+    {
+        $users = User::all()->except(Auth::id());//iki arek tampilke user tapi ora karo arek login. iku la ndelok conto ne except(Auth::id)
+        return view('tampilan_user',compact('users'));
+    } */
 }

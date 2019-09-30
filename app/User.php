@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Cache;
 
 class User extends Authenticatable
 {
@@ -36,6 +37,12 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function isOnline()
+    {
+        /* return Cache::has('active-users'.$this->id); */
+        return Cache::has('user-is-online-'.$this->id);
+    }
 
     public function isAdmin()//unutk membuat function admin/ isAdmin bisa diganti bacaan na yang lainnya (terserah)
     {
