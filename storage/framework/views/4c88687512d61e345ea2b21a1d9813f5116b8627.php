@@ -9,9 +9,13 @@
          <div class="col" >
             <div class="ahref">
                 <a  style="color:black; text-decoration:none; font-size:20px; color:white; " href="<?php echo e(url('/admin.chat')); ?>">All ChatRoom</a> 
-                <a  style="color:black; text-decoration:none; font-size:20px; color:white; " href="<?php echo e(url('/admin.CityRadio')); ?>">City Radio</a>
+                <a  style="color:black; text-decoration:none; font-size:20px; color:white; " href="<?php echo e(url('/admin.CityRadio')); ?>">City Radio</a>   
+                <a  style="color:black; text-decoration:none; font-size:20px; color:white; " href="<?php echo e(url('/tampil')); ?>">Another Room</a>
+                    <div class="add_room">
+                    <?php echo $__env->make('admin.yes', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?> 
+                    </div> 
              </div>                                                                                                                                                                                                                                                                                                              
-        </div>
+        </div>  
            <?php else: ?>
         <div class="col" >
             <div class="ahref">
@@ -29,20 +33,48 @@
         </div>
     </div>
 </div>
-<?php $__env->stopSection(); ?>
 
- <script>
-    function show_hide(){
-        var click = document.getElementById("drop-content");
-        if(click.style.display === "none"){
-            click.style.display = "block";
-        }else{
-            click.style.display ="none";
-        }
-    }
+ <script type="text/javascript">
+    $('.addRow').on('click',function(){
+        addRow();
+    });
+    function addRow(){
+        var tr =' <tr>'+
+                                '<td><input type="text" name="newroom[]" class="form-control" placeholder="Write Your New Room Name Here..."></td>'+
+                                '<td><a href="#" class="btn btn-info remove">X</td>'+
+                            '</tr>';
+
+                            $('tbody').append(tr); 
+    };
+    $('tbody').on('click','.remove', function(){
+        $(this).parent().parent().remove();
+    });
  </script>
 
+ <?php $__env->stopSection(); ?>
+
+ 
  <style>
+
+.radius{
+    border-radius:50px;
+}
+
+.plus {
+ margin-left:15px;
+  width:15px;
+  height:15px;
+  background-color:white;
+  
+  background:
+    linear-gradient(#fff,#fff),
+    linear-gradient(#fff,#fff),
+    #000;
+  background-position:center;
+  background-size: 50% 2px,2px 50%; /*thickness = 2px, length = 50% (25px)*/
+  background-repeat:no-repeat;
+}
+
  .welcome{
      background-color:red;
      border-radius:0px 0px 15px 15px;
@@ -90,4 +122,4 @@ display:inline-block;
  }
  </style>
 
-<?php echo $__env->make('admin.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\koment\resources\views/admin/index.blade.php ENDPATH**/ ?>
+<?php echo $__env->make('admin.app2', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\koment\resources\views/admin/index.blade.php ENDPATH**/ ?>
