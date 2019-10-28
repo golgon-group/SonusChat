@@ -28,6 +28,9 @@ Vue.use(VueChatScroll)
 Vue.component('message', require('./components/message.vue').default);
 Vue.component('cityradio',require('./components/cityradio.vue').default);
 Vue.component('medan',require('./components/medan.vue').default);
+Vue.component('addroom',require('./components/addroom.vue').default);
+Vue.component('newroom',require('./components/newroom.vue').default);
+Vue.component('chatbox',require('./components/chatbox.vue').default);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -35,15 +38,17 @@ Vue.component('medan',require('./components/medan.vue').default);
  */ 
 
 const app = new Vue({
-    el: '#app',
+    el: '#app', 
    data:{
+       message_newroom:'',
        message:'',
-       message1:'',
+       message1:'',/* for CityRadio  */
        message2:'',
        users:[],
        chat:{ 
+           message_newroom:[],
            message:[],
-           message1:[],
+           message1:[],/* for City Radio */
            message2:[],
            user:[],//unutk membuat nama user
            color:[],
@@ -140,6 +145,27 @@ const app = new Vue({
                 })
             }
         },
+
+        //unutk mengirimkan ke newroom
+        sendnewroom(){
+            if(this.message_newroom.length !=0){
+                this.chat.message_newroom.push(this.message_newroom);
+                this.chat.user.push('you');
+                this.chat.time.push(this.getTime());
+                axios.post('/sendnewroom',{
+                    message_newroom:this.message_newroom,
+                    chat:this.chat
+                })
+                .then(response => {
+                    console.log(response);
+                    this.message_newroom= ''
+                })
+                .catch(error =>{
+                    console.log(error);
+                })
+            }
+        },
+
             //untuk membuat waktu (time)
         getTime(){
             let time = new Date();
@@ -190,6 +216,14 @@ const app = new Vue({
             this.chat.user.push(e.user);
             this.chat.time.push(this.getTime());
         })
+
+        Echo.private('chat')// untk room ChatDetailNewRoomCityRadio
+        .listen('NewRoomEvent',(e)=>{
+            this.chat.message_newroom.push(e.message_newroom);
+            this.chat.user.push(e.user);
+            this.chat.time.push(this.getTime());
+        })
+
         .listenForWhisper('typing', (e)=> {//untuk membuat ada baccan typing ketka ketik chat
             if(e.name !='') {
            this.typing = 'Sedang Mengetik...'//text untuk jika diketik keluat di layout

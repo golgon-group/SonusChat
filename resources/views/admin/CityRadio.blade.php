@@ -16,16 +16,17 @@
         Delete All  Chat
     </div>  unutk membuat penghapusan chat yang dilakukan oleh admin, akan tetapi saat ini tidak digunakan--}}
  
-  </div>
+  </div>{{-- akhir kiri --}}
       <div class="kanan">{{-- awal kanan --}}
 
-  <center/><div  class="kotak" style="background-color:lightgrey; height:49px;"><h4/ style="color:white;"><center/>Online User</div>
+  <center/><div  class="kotak" style="background-color:black; height:49px;"><h4/ style="color:white;"><center/><h2/>Online User</div>
   <div class="isi">
       @if(Auth::check())
     @foreach($users as $user)
         @if($user->isOnline())
+        <div class="kotak_user">
     <a href="/admin.UserCity/{{$user->id}}"> <h3/> {{$user->name}}</a>
-
+    </div>
         @endif
     @endforeach
 @else
@@ -37,13 +38,25 @@ nothing
 @endsection
 <style>
 
+.kotak_user{
+  margin-top:10px;
+    border:1px solid white;
+    border-radius:70px 10px 70px 10px;
+    width:300px;
+}
+
+.kotak_user a{
+  color:black;
+  text-decoration:none !important;
+}
+
  .container1{
       width:900px;
     }
 
     .isi{
       height:435px;
-      overflow-y:scroll;
+      overflow-y:auto ;
     }
 
     .kiri{ 
@@ -56,9 +69,11 @@ nothing
     .kanan{ 
     width:350px;
     border-radius:0px 6px 10px 0px;
+    border:0px solid black;
     margin-right:10px;
     float:right;
-    height:400px;
+    height:485px;
+    background-color:lightgrey;
     }
 
    
@@ -66,6 +81,7 @@ nothing
         overflow-y:scroll;
         height:400px;
         width:750px;
+        background-color:lightgrey;
     }
 
     .delete {
