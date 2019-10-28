@@ -14,7 +14,8 @@
 /* Route::get('/', function () {
     return view('welcome');
 }); */
-  
+/* Route::get('/send','ChatController@store'); */
+Route::post('/AddNewRoom','ChatController@AddNewRoom');
 Route::get('/chat', 'ChatController@chat');
 Route::post('/send', 'ChatController@send');
 Route::post('stillsave','ChatController@stillsave');
@@ -23,6 +24,7 @@ Route::get('/CityRadio','ChatController@CityRadio');//sama dengan ss
 Route::post('/sendcity','ChatController@sendcity');//sama dengan send
 Route::get('/medan','ChatController@medan');//sama dengan cityradio get
 Route::post('/sendmedan','ChatController@sendmedan');//sama dengan send post
+Route::post('/sendnewroom','ChatController@sendnewroom');
 Route::get('check',function(){
     return session('chat');
 });
@@ -38,8 +40,14 @@ Route::get('/admin.medan', 'AdminController@medan');
 Route::get('/admin.index','AdminController@beranda');
 Route::get('/admin.AllChat','AdminController@adminsuper');//untul AllChat
 Route::get('/admin.home','AdminController@register');
+Route::get('/room','AdminController@room');
+Route::get('/room_add','AdminController@room_add');
 Route::get('/tampilan_user','HomeController@tampilan_user');
-Route::get('/admin.UserCity/{users}','AdminController@show');
+Route::get('/admin.UserCity/{users}','AdminController@showcity');
+Route::get('/admin.UserMedan/{users}','AdminController@showmedan');
+Route::get('/tampil','AddNewRoomController@tampil');
+Route::post('/addmore','AddNewRoomController@addMorePost');// ini untuk penambahan addnewroom na 
+Route::get('/admin.ChatDetailNewRoomCityRadio/{newroom}','AddNewRoomController@DetailCityRadio');
 
 
 /* Route::get('/admin/index','AdminController@register'); */
