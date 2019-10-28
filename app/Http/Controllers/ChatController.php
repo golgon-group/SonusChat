@@ -9,6 +9,7 @@ use App\Events\ChatEvent;
 use App\Events\CityRadioEvent;
 use App\Events\MedanFmEvent;
 use App\User;
+use App\Events\NewRoomEvent;
 
 class ChatController extends Controller
 {
@@ -50,7 +51,7 @@ class ChatController extends Controller
        
         //disini harus sama dengan class model
         $chat = new Chat();
-        $chat->text = $request->text;
+        $chat->text = $request->message;
         $chat->nama=Auth::user()->name;
         $chat->save();    
         /* event(new Send($request->pesan)); */
@@ -114,15 +115,21 @@ class ChatController extends Controller
     {  
       /*  return $request->all(); */
         
-        $user = User::find(Auth::id());
+         $user = User::find(Auth::id());
         $this->stillsave($request);//diambil dari yang di bawah nama funtion na, letakkan kemari
         event(new ChatEvent($request->message,$user));
-    } 
+    }  
 
     public function sendcity(request $request)//CityRadio
     {
         $user = User::find(Auth::id());
         event(new CityRadioEvent($request->message1,$user));
+    }
+
+    public function sendnewroom(request $request)
+    {
+        $user = User::find(Auth::id());
+        event(new NewRoomEvent($request->message_newroom,$user));
     }
 
     public function CityRadio()//City Radio

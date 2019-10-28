@@ -42,7 +42,7 @@ class AdminController extends Controller
 
     public function adminsuper()
     {
-        return view('admin.AllChat');
+        return view('admin.AllChat'); 
     }
 
     public function register()
@@ -80,15 +80,30 @@ class AdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(User $users)
+    public function showcity(User $users)
     {
       
         return view('admin.UserCity',compact('users'));
     }
 
+    public function showmedan(USer $users)
+    {
+        return view('admin.UserMedan', compact('users'));
+    }
+
+    public function room()
+    {
+        return view('admin.room');
+    }
+
+    public function room_add()
+    {
+        return view('admin.room_add');
+    }
+
     /**
      * Show the form for editing the specified resource.
-     *
+     *zzz
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
