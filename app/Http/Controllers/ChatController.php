@@ -115,7 +115,7 @@ class ChatController extends Controller
     {  
       /*  return $request->all(); */
         
-         $user = User::find(Auth::id());
+        $user = User::find(Auth::id());
         $this->stillsave($request);//diambil dari yang di bawah nama funtion na, letakkan kemari
         event(new ChatEvent($request->message,$user));
     }  
